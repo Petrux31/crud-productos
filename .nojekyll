@@ -1,1 +1,13 @@
-ECHO est  activado.
+{
+  "projects": {
+    "crud-productos": {
+      "architect": {
+        "build": {
+          "options": {
+            "baseHref": "/crud-productos/"
+          }
+        }
+      }
+    }
+  }
+}

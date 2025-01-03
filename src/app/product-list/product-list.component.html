@@ -1,0 +1,55 @@
+<div class="container">
+  <h2 class="my-4">Lista de Productos</h2>
+
+  <!-- Botón para redirigir al formulario de inserción -->
+  <div class="mb-3">
+    <a [routerLink]="['/products/form']" class="btn btn-primary">Agregar Producto</a>
+  </div>
+
+  <!-- Filtro de Categoría -->
+  <div class="mb-3">
+    <label for="categoryFilter" class="form-label">Filtrar por categoría:</label>
+    <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="onCategoryChange($event)"
+      class="form-select form-control">
+      <option value="">Todas</option>
+      <option value="PHONE">PHONE</option>
+      <option value="LAPTOP">LAPTOP</option>
+      <option value="TV">TV</option>
+    </select>
+  </div>
+
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ product.category }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            [routerLink]="['/edit-product', product.id]"
+            *ngIf="product.id">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="deleteProduct(product.id);">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
